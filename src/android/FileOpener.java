@@ -47,7 +47,7 @@ public class FileOpener extends CordovaPlugin {
 
         Intent intent;
         // Check what kind of file you are trying to open, by comparing the url with extensions.
-        // When the if condition is matched, plugin sets the correct intent (mime) type, 
+        // When the if condition is matched, plugin sets the correct intent (mime) type,
         // so Android knew what application to use to open the file
 
         if (url.contains(".doc") || url.contains(".docx")) {
@@ -78,6 +78,10 @@ public class FileOpener extends CordovaPlugin {
             // GIF file
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "image/gif");
+        } else if(url.contains(".csv")) {
+            // CSV file
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(uri, "text/csv");
         } else if(url.contains(".jpg") || url.contains(".jpeg")) {
             // JPG file
             intent = new Intent(Intent.ACTION_VIEW);
@@ -91,13 +95,13 @@ public class FileOpener extends CordovaPlugin {
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "video/*");
         }
-                
+
         //if you want you can also define the intent type for any other file
-        
+
         //additionally use else clause below, to manage other unknown extensions
         //in this case, Android will show all applications installed on the device
         //so you can choose which application to use
-        
+
         // else {
         //     intent = new Intent(Intent.ACTION_VIEW);
         //     intent.setDataAndType(uri, "*/*");
